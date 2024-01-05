@@ -1,0 +1,10 @@
+﻿{
+    "profiles": {
+      "Broken_WinRT (Package)": {
+        "commandName": "MsixPackage"
+      },
+      "Broken_WinRT (Unpackaged)": {
+        "commandName": "Project"
+      }
+    }
+}

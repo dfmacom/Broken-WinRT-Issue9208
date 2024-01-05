@@ -1,0 +1,69 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+		<RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+		<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+		<RootNamespace>Broken_WinRT</RootNamespace>
+		<ApplicationIcon>Resources\Assets\WindowIcon.ico</ApplicationIcon>
+		<ApplicationManifest>Properties/app.manifest</ApplicationManifest>
+		<RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+		<PublishProfile>win-$(Platform).pubxml</PublishProfile>
+		<Platforms>x86;x64;ARM64</Platforms>
+		<PublishProfile>win-$(Platform).pubxml</PublishProfile>
+		<UseRidGraph>true</UseRidGraph>
+		<UseWinUI>true</UseWinUI>
+		<EnableMsixTooling>true</EnableMsixTooling>
+		<Nullable>enable</Nullable>
+		<WarningsAsErrors>true</WarningsAsErrors>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+	</PropertyGroup>
+	<ItemGroup>
+	  <None Remove="Code\MVVM\Views\DataHub\DataHubHomePageView.xaml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Content Include="Resources\Assets\LockScreenLogo.scale-200.png" />
+	  <Content Include="Resources\Assets\SplashScreen.scale-200.png" />
+	  <Content Include="Resources\Assets\Square150x150Logo.scale-200.png" />
+	  <Content Include="Resources\Assets\Square44x44Logo.scale-200.png" />
+	  <Content Include="Resources\Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+	  <Content Include="Resources\Assets\StoreLogo.png" />
+	  <Content Include="Resources\Assets\Wide310x150Logo.scale-200.png" />
+	  <Content Include="Resources\Assets\WindowIcon.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Manifest Include="$(ApplicationManifest)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Broken-WinRT.Core\Broken-WinRT.Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Resources\Assets\Config\*.txt">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<Page Update="Code\MVVM\Views\DataHub\DataHubHomePageView.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</Page>
+		<None Update="Properties\appsettings.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+		<ProjectCapability Include="Msix" />
+	</ItemGroup>
+
+	<PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+		<HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
+	</PropertyGroup>
+</Project>
